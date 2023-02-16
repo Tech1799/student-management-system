@@ -7,3 +7,9 @@ task 3: make crud api for subjects
 task 4: create a student_subject table and create a link between them using table. Do it by using db raw queries and functions instead of sequelize.
 
 task 5: make the api for student_subject table (relationship between student and subject table).
+
+task 6: create users and roles table.
+
+task 7: add timestamps to students and users
+
+task 8: implement JWT authentication (auth.middleware.ts)

@@ -6,3 +6,4 @@ package-lock.json
 private.pem
 public.pem
 .env
+readme.md
