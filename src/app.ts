@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 
 // importing middleware
 import errorMiddleware from "./middlewares/error.middleware";
+import { checkUser } from "./middlewares/auth.middleware";
 
 // importing routers
 import studentRouter from "./routers/students.router";
@@ -31,6 +32,7 @@ class App {
     this.express.use(morgan("dev"));
   }
   public initialiseRouters(): void {
+    this.express.use("*", checkUser);
     this.express.use("/api", studentRouter);
     this.express.use("/api", subjectRouter);
     this.express.use("/api", StudentSubjects);

@@ -6,6 +6,7 @@ import db from "../db/connection";
 import HttpException from "../utils/exceptions/http.exception";
 import { generateToken } from "../middlewares/auth.middleware";
 import { verify } from "jsonwebtoken";
+const maxAge = 86400; // 24 * 60 * 60
 
 // controller for some request-response testing
 export const testController = async (
@@ -72,7 +73,7 @@ export const signup = async (
       },
       type: QueryTypes.INSERT,
     });
-    res.send({
+    res.status(201).send({
       message: "user sign up successfully.",
     });
   } catch (err: any) {
@@ -95,7 +96,7 @@ export const login = async (
       left outer join roles
       on users.role_id = roles.id
       and
-      email=:email
+      users.email=:email
     `;
     const data: any = await db.query(raw, {
       replacements: {
@@ -106,6 +107,10 @@ export const login = async (
     const checkPass = await compare(req.body.password, data[0].password);
     if (checkPass) {
       const token = generateToken(data[0]);
+      res.cookie("auth_token", token, {
+        httpOnly: true,
+        maxAge: maxAge * 1000,
+      });
       res.send({
         message: "user login successfully!",
         token,
