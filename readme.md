@@ -1,1 +1,1 @@
-An express app made in typescript that stores and alters students' data.
+An express app made in typescript and psql that stores and alters students' data.
