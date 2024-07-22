@@ -10,6 +10,4 @@ task 5: make the api for student_subject table (relationship between student and
 
 task 6: create users and roles table.
 
-task 7: add timestamps to students and users
-
-task 8: implement JWT authentication (auth.middleware.ts)
+task 7: implement JWT authentication (auth.middleware.ts)
